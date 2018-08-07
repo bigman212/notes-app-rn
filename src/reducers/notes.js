@@ -9,7 +9,8 @@ type Store = {
 
 const initialStore: Store = {
   notesList: [
-    { title: "Yes", description: "YEEEEES" }
+    { title: "Yes", description: "YEEEEES" },
+    { title: "Yes_2", description: "YEEEEES_2" }
   ]
 };
 
