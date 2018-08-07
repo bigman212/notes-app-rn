@@ -9,3 +9,6 @@
 - [x] Connect Redux, create store structure
 - [ ] Design UI, polish
 - [ ] Finish minimal functionality
+  - [ ] Store persistent data
+  - [ ] Add/remove notes
+- [ ] Add async redux actions
