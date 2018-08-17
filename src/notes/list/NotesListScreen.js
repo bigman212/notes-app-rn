@@ -1,6 +1,6 @@
 //@flow
 import * as React from 'react';
-import NotesList from "./List";
+import NotesList from "./components/NotesList";
 import {connect} from "react-redux";
 import {StyleSheet, View} from "react-native";
 import type {NavigationScreenProp} from "react-navigation";

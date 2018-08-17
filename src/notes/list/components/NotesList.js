@@ -2,7 +2,7 @@
 import * as React from 'react'
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {SwipeListView} from "react-native-swipe-list-view";
-import type {Note} from "../../models";
+import type {Note} from "../../../models";
 
 type Props = {
   data: Array<Note>,

@@ -1,3 +1,4 @@
+// @flow
 import {combineReducers, createStore} from "redux";
 import notes from './modules/notes'
 
