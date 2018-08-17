@@ -1,12 +1,13 @@
 import notes from "../notes";
 import configureStore from "redux-mock-store";
-import type {Note} from "../../../models";
+import type {Note, Store} from "../../../models";
 
-const initialStore = {
+const initialStore: Store = {
   notesList: [
     { title: "Note #1", description: "Desc #1" },
     { title: "Note #2", description: "Desc #2" }
-  ]
+  ],
+  number: 0
 };
 
 describe('actions', () => {
@@ -19,6 +20,9 @@ describe('actions', () => {
       type: 'notes/ADD_NOTE',
       note: note
     };
+
+    console.log(notes);
+
     expect(notes.actions.add(note)).toEqual(expectedAction)
   })
 });
