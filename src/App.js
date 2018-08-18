@@ -9,15 +9,18 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import {Provider} from "react-redux";
-import NotesListScreen from "./src/NotesList/NotesListScreen";
-import store from "./src/store";
+import NotesListScreen from "./notes/list/NotesListScreen";
 import {createStackNavigator} from "react-navigation";
-import NotesDetailScreen from "./src/NotesList/NotesDetailScreen";
+import NotesDetailScreen from "./notes/detail/NotesDetailScreen";
+import store from "./redux/store";
 
-
-const RootStack = createStackNavigator(
-  {
-    NotesList: NotesListScreen,
+const RootStack = createStackNavigator({
+    NotesList: {
+      screen: NotesListScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
     NotesDetail: NotesDetailScreen
   },
   {
