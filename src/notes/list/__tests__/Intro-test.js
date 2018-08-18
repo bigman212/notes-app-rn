@@ -4,10 +4,12 @@ import configureStore from 'redux-mock-store'
 import {shallow} from 'enzyme';
 
 const initialStore = {
-  notesList: [
-    { title: "Note #1", description: "Desc #1" },
-    { title: "Note #2", description: "Desc #2" }
-  ]
+  notes: {
+    notesList: [
+      { title: "Note #1", description: "Desc #1" },
+      { title: "Note #2", description: "Desc #2" }
+    ]
+  }
 };
 const mockStore = configureStore();
 const store = mockStore(initialStore);

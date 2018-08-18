@@ -1,58 +1,63 @@
 import notes from "../notes";
 import configureStore from "redux-mock-store";
-import type {Note, Store} from "../../../models";
+import type {Note} from "../../../models";
 
-const initialStore: Store = {
+const initialStore = {
   notesList: [
     { title: "Note #1", description: "Desc #1" },
     { title: "Note #2", description: "Desc #2" }
-  ],
-  number: 0
+  ]
 };
 
-describe('actions', () => {
-  it('should create an action to add a todo', () => {
-    const note: Note = {
-      title: 'yes',
-      description: 'no'
-    };
+describe('>>>> ACTIONS', () => {
+  const note: Note = {
+    title: 'yes',
+    description: 'no'
+  };
+
+  it('++++ ADD_NOTE', () => {
     const expectedAction = {
       type: 'notes/ADD_NOTE',
       note: note
     };
-
-    console.log(notes);
-
     expect(notes.actions.add(note)).toEqual(expectedAction)
+  });
+
+  it('++++ REMOVE_NOTE', () =>{
+    const expectedAction = {
+      type: notes.actions.types.REMOVE_NOTE,
+      noteId: 0
+    };
+    expect(notes.actions.remove(0)).toEqual(expectedAction)
   })
 });
 
-describe('>>>CHECKING NOTES',()=> {
+describe('>>> REDUCER',()=> {
   const mockStore = configureStore();
   let store;
+  const note: Note = {
+        title: 'new',
+        description: 'desc'
+      };
 
   beforeEach(() => {
     store = mockStore(initialStore);
   });
 
-  it('Testing store', () => {
-    expect(store.getState().notesList.length).toEqual(2);
+  it('+++ Testing store', () => {
+    expect(store.getState()).not.toBeUndefined();
   });
 
-  it('Testing actions', () => {
-    const note: Note = {
-      title: 'new',
-      description: 'desc'
-    };
-    store.dispatch(notes.actions.add(note));
-
-    const action = store.getActions();
-    expect(action[0].type).toBe("notes/ADD_NOTE");
-  });
+  // it('+++ Testing ', () => {
+  //
+  //   store.dispatch(notes.actions.add(note));
+  //   const action = store.getActions();
+  //   expect(action[0].type).toBe("notes/ADD_NOTE");
+  // });
 
   it('+++ reducer for ADD_NOTE', () => {
-    let state = initialStore;
-    state = notes.reducer(state, notes.actions.add({title: 'new', description: 'one'}));
-    expect(state).not.toEqual(initialStore)
+    store = notes.reducer(initialStore, notes.actions.add(note));
+    expect(store).not.toEqual(initialStore);
+    expect(store.notesList.length).toEqual(initialStore.notesList.length+1)
   });
 });

@@ -36,7 +36,6 @@ const initialStore: NoteStore = {
 };
 
 const reducer = (state: NoteStore = initialStore, action: NoteAction): NoteStore => {
-  debugger;
   switch (action.type) {
     case ADD_NOTE:
       return { ...state, notesList: [...state.notesList, action.note] };
@@ -47,5 +46,8 @@ const reducer = (state: NoteStore = initialStore, action: NoteAction): NoteStore
   }
 };
 
-const actions = { add, remove };
+const actions = {
+  add, remove,
+  types: { ADD_NOTE, REMOVE_NOTE }
+};
 export default { reducer, actions };
