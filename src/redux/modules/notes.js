@@ -28,12 +28,20 @@ type NoteStore = {
   +notesList: Array<Note>
 }
 
+const initialStore: NoteStore = {
+  notesList: [
+    { title: "Note #1", description: "Desc #1" },
+    { title: "Note #2", description: "Desc #2" }
+  ]
+};
+
 const reducer = (state: NoteStore = initialStore, action: NoteAction): NoteStore => {
+  debugger;
   switch (action.type) {
     case ADD_NOTE:
       return { ...state, notesList: [...state.notesList, action.note] };
     case REMOVE_NOTE:
-      return {...state, ...state};
+      return state;
     default:
       return state;
   }
