@@ -7,6 +7,6 @@ export type Note = {
 
 export type Store = {
   +notesList: Array<Note>,
-  +number: 0
+  +number: number
 }
 

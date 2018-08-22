@@ -3,16 +3,16 @@
  * https://github.com/facebook/react-native
  *
  * @format
- *
  */
 
-import React, {Component} from 'react';
-import {View} from 'react-native';
+import * as React from 'react';
+import {Text, View} from 'react-native';
 import {Provider} from "react-redux";
 import NotesListScreen from "./notes/list/NotesListScreen";
 import {createStackNavigator} from "react-navigation";
 import NotesDetailScreen from "./notes/detail/NotesDetailScreen";
-import store from "./redux/store";
+import {persistor, store} from "./redux/store";
+import {PersistGate} from 'redux-persist/integration/react'
 
 const RootStack = createStackNavigator({
     NotesList: {
@@ -28,13 +28,15 @@ const RootStack = createStackNavigator({
   }
 );
 
-export default class App extends Component {
+export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <RootStack/>
+        <PersistGate persistor={persistor}>
+          <RootStack/>
+        </PersistGate>
       </Provider>
-    );
+    )
   }
 }
 

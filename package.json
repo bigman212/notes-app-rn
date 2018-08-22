@@ -1,6 +1,6 @@
 {
   "name": "todo_app",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -23,6 +23,7 @@
     "flow-typed": "2.5.1",
     "jest": "23.4.2",
     "react-test-renderer": "^16.4.1",
+    "redux-persist": "5.10.0",
     "redux-mock-store": "1.5.3",
     "enzyme": "3.4.3",
     "enzyme-adapter-react-16": "1.2.0"

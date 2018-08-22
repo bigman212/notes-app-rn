@@ -40,7 +40,9 @@ const reducer = (state: NoteStore = initialStore, action: NoteAction): NoteStore
     case ADD_NOTE:
       return { ...state, notesList: [...state.notesList, action.note] };
     case REMOVE_NOTE:
-      return state;
+      const newList = state.notesList.slice();
+      newList.splice(action.noteId, 1);
+      return { ...state, notesList: newList };
     default:
       return state;
   }

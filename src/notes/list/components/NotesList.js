@@ -1,26 +1,27 @@
 //@flow
 import * as React from 'react'
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import type {Note} from "../../../models";
 
 type Props = {
-  data: Array<Note>,
-  onItemClick: () => any
+  data: Array<any>,
+  onItemClick: (index: number) => any
 }
 
-const NotesList = ({data, onItemClick}: Props) => (
-  <FlatList
-    data={data}
-    ItemSeparatorComponent={() => <View style={styles.separator}/>}
-    renderItem={ ({item}) => (
-        <TouchableOpacity onPress={onItemClick}>
+const NotesList = ({data, onItemClick}: Props) => {
+  return (
+    <FlatList
+      data={data}
+      ItemSeparatorComponent={() => <View style={styles.separator}/>}
+      renderItem={({ item, index }) => (
+        <TouchableOpacity onPress={() => onItemClick(index)}>
           <View style={styles.view}>
-          <Text  style={styles.textTitle}>{item.title}</Text>
+            <Text style={styles.textTitle}>{item.title}</Text>
           </View>
         </TouchableOpacity>
-    )}
-  />
-);
+      )}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
   textTitle: {

@@ -12,7 +12,8 @@ import Button from "./components/Button";
 type Props = {
   notesList: Array<Note>,
   navigation: NavigationScreenProp<*>,
-  addNote: (note: Note) => void
+  addNote: (note: Note) => void,
+  removeNote: (noteId: number) => void
 }
 
 type State = {
@@ -28,10 +29,11 @@ class NotesListScreen extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
         <View style={ { flexDirection: 'row' }}>
-          <TextInput style={{backgroundColor: 'black', flex: 5}} onChangeText={(text: string) => this.setState({currentText: text})}/>
+          <TextInput style={{backgroundColor: 'black', flex: 5}}
+                     onChangeText={(text: string) => this.setState({currentText: text})}/>
           <Button style={{flex: 1}} text={'Add'} onClick={this._addNewNote}/>
         </View>
-        <NotesList data={this.props.notesList} onItemClick={this._goToDetailedNote}/>
+        <NotesList data={this.props.notesList} onItemClick={this.props.removeNote}/>
       </View>
     )
   }
@@ -42,11 +44,11 @@ class NotesListScreen extends React.Component<Props, State> {
 
   _addNewNote = () => {
     const newNote: Note = {
-      title: 'yes',
-      description: 'yes'
+      title: this.state.currentText,
+      description: 'description'
     };
     this.props.addNote(newNote);
-  }
+  };
 }
 
 const styles = StyleSheet.create({
@@ -64,6 +66,9 @@ function mapDispatchToProps (dispatch: Dispatch<any>) {
   return {
     addNote: (note: Note) => {
       dispatch(notes.actions.add(note))
+    },
+    removeNote: (noteId: number) => {
+      dispatch(notes.actions.remove(noteId))
     }
   }
 }
