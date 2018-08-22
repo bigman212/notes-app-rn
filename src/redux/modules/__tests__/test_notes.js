@@ -58,6 +58,14 @@ describe('>>> REDUCER',()=> {
   it('+++ reducer for ADD_NOTE', () => {
     store = notes.reducer(initialStore, notes.actions.add(note));
     expect(store).not.toEqual(initialStore);
-    expect(store.notesList.length).toEqual(initialStore.notesList.length+1)
+    expect(store.notesList.length).toEqual(initialStore.notesList.length - 1)
   });
+
+  it('+++ reducer for REMOVE_NOTE', () => {
+    store = notes.reducer(initialStore, notes.actions.remove(0));
+    // Note #1 should go
+    expect(store.notesList.length).toEqual(initialStore.notesList.length - 1);
+    console.log(store);
+    expect(store.notesList).not.toEqual(initialStore.notesList);
+  })
 });
